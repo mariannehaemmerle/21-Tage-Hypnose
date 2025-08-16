@@ -1,30 +1,46 @@
-// src/App.jsx
 import React, { useState } from "react";
-import { Button } from "./components/ui.buttons";
-import { Input } from "./components/ui.input";
-import { Textarea } from "./components/ui.textarea";
-import { Progress } from "./components/ui.progress";
+import { Button } from "./components/ui/button";
+import { Input } from "./components/ui/input";
+import { Textarea } from "./components/ui/textarea";
+import { Progress } from "./components/ui/progress";
 
-export default function App() {
-  const [progress, setProgress] = useState(40);
+function App() {
+  const [text, setText] = useState("");
+  const [progress, setProgress] = useState(0);
+
+  const handleStart = () => {
+    // Demo: Fortschritt hochzählen
+    setProgress((prev) => (prev >= 100 ? 0 : prev + 20));
+  };
 
   return (
-    <div className="min-h-screen bg-zinc-50 flex flex-col items-center justify-center p-6 space-y-6">
-      <h1 className="text-2xl font-bold text-zinc-800">Meine Synapsen App</h1>
+    <div className="min-h-screen bg-zinc-50 flex flex-col items-center justify-center p-6">
+      <h1 className="text-3xl font-bold text-emerald-600 mb-6">
+        Hypnose App 🌿
+      </h1>
 
-      {/* Input-Feld */}
-      <Input placeholder="Gib etwas ein..." />
+      <div className="w-full max-w-md space-y-4">
+        <Input
+          placeholder="Dein Name"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
 
-      {/* Textarea */}
-      <Textarea placeholder="Längere Texte hier..." />
+        <Textarea
+          placeholder="Schreibe deine Notiz..."
+          rows={4}
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
 
-      {/* Button */}
-      <Button onClick={() => setProgress((p) => (p >= 100 ? 0 : p + 10))}>
-        Fortschritt erhöhen
-      </Button>
+        <Button onClick={handleStart} className="w-full">
+          Starte Hypnose
+        </Button>
 
-      {/* Fortschrittsanzeige */}
-      <Progress value={progress} className="w-64" />
+        <Progress value={progress} />
+      </div>
     </div>
   );
 }
+
+export default App;
