@@ -1,0 +1,15 @@
+/* Basis-Styling für dein Journal */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #f9f9f9;
+  color: #333;
+}
+
+h1, h2, h3 {
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
