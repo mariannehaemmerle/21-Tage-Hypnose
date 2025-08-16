@@ -1,12 +1,30 @@
-import React from "react";
+// src/App.jsx
+import React, { useState } from "react";
+import { Button } from "./components/ui.buttons";
+import { Input } from "./components/ui.input";
+import { Textarea } from "./components/ui.textarea";
+import { Progress } from "./components/ui.progress";
 
-function App() {
+export default function App() {
+  const [progress, setProgress] = useState(40);
+
   return (
-    <div>
-      <h1>Willkommen in meiner App 🚀</h1>
-      <p>Diese Seite rendert jetzt korrekt Inhalte.</p>
+    <div className="min-h-screen bg-zinc-50 flex flex-col items-center justify-center p-6 space-y-6">
+      <h1 className="text-2xl font-bold text-zinc-800">Meine Synapsen App</h1>
+
+      {/* Input-Feld */}
+      <Input placeholder="Gib etwas ein..." />
+
+      {/* Textarea */}
+      <Textarea placeholder="Längere Texte hier..." />
+
+      {/* Button */}
+      <Button onClick={() => setProgress((p) => (p >= 100 ? 0 : p + 10))}>
+        Fortschritt erhöhen
+      </Button>
+
+      {/* Fortschrittsanzeige */}
+      <Progress value={progress} className="w-64" />
     </div>
   );
 }
-
-export default App;
